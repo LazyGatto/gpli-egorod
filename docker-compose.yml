@@ -79,6 +79,7 @@ services:
         volumes:
             - ego-nas_glpi_nginx_conf:/etc/nginx/conf.d
             - ego-nas_glpi_nginx_log:/var/log/nginx
+            - ego-nas_glpi_php-fpm_data:/var/www
         links:
             - php-fpm
 
@@ -99,7 +100,7 @@ services:
         build: ./php-fpm
         volumes:
             - ego-nas_glpi_php-fpm_conf:/usr/local/etc/php
-            - ego-nas_glpi_php-fpm_data:/var/www
             - ego-nas_glpi_php-fpm_log:/var/log/php
+            - ego-nas_glpi_php-fpm_data:/var/www
         links:
             - mariadb
