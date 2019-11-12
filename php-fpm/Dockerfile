@@ -4,10 +4,15 @@ RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
+        libldap2-dev \
+        libc-client-dev \
+        libkrb5-dev \
+        libsnmp-dev \
+        libxml2-dev \
     ; \
+    rm -r /var/lib/apt/lists/* ; \
     docker-php-ext-install -j$(nproc) iconv ; \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ ; \
-    docker-php-ext-install -j$(nproc) gd ; \
     docker-php-ext-configure ldap ; \
     docker-php-ext-install -j$(nproc) \
        exif \
@@ -30,4 +35,3 @@ COPY assets/index.php /var/www/html/index.php
 
 # Override with custom opcache settings
 # COPY assets/opcache.ini $PHP_INI_DIR/conf.d/
-
