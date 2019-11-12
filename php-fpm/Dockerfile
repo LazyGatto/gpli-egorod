@@ -7,6 +7,18 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) iconv \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd
+    docker-php-ext-configure ldap ; \
+    docker-php-ext-install \
+       exif \
+       imap \
+       ldap \
+       mysqli \
+       opcache \
+       snmp \
+       soap \
+       xmlrpc \
+    ; \
+    pecl install apcu-4.0.11 && docker-php-ext-enable apcu ; \
 
 ### TEMP STRING MOVED TO ASSETS
 # RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" 
