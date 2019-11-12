@@ -1,5 +1,5 @@
 FROM nginx:latest
 
-COPY assets/glpi.conf /etc/nginx/conf.d/glpi.conf
+COPY assets/default.conf /etc/nginx/conf.d/default.conf
 
 # add CRT files

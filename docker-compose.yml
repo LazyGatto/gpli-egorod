@@ -101,3 +101,5 @@ services:
             - ego-nas_glpi_php-fpm_conf:/usr/local/etc/php
             - ego-nas_glpi_php-fpm_data:/var/www
             - ego-nas_glpi_php-fpm_log:/var/log/php
+        links:
+            - mariadb
