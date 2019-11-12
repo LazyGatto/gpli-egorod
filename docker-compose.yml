@@ -95,7 +95,7 @@ services:
             - ego-nas_gpli_mariadb_log:/var/log/mysql
         restart: always
 
-    php-fpm
+    php-fpm:
         build: ./php-fpm
         volumes:
             - ego-nas_glpi_php-fpm_conf:/etc/php/conf.d
