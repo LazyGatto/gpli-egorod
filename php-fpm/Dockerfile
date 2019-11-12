@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
 # RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" 
 
 COPY assets/php.ini /usr/local/etc/php/php.ini
+COPY assets/index.php /var/www/html/index.php
 
 # Override with custom opcache settings
 # COPY assets/opcache.ini $PHP_INI_DIR/conf.d/
