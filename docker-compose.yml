@@ -1,0 +1,38 @@
+version: "2"
+
+volumes:
+    ego-nas_gpli_mariadb_data:
+        driver: local
+        driver_opts:
+            type: nfs
+            o: "addr=10.1.1.250,rw,noatime,nolock,soft,rsize=8192,wsize=8192,tcp,timeo=14"
+            device: ":/volume1/docker/glpi-data/mariadb/data"
+    ego-nas_glpi_nginx_conf:
+        driver: local
+        driver_opts:
+            type: nfs
+            o: "addr=10.1.1.250,rw,noatime,nolock,soft,rsize=8192,wsize=8192,tcp,timeo=14"
+            device: ":/volume1/docker/glpi-data/nginx/conf"
+
+services:
+    mariadb:
+        image: mariadb:latest
+        #ports: 
+        #    - "13306:3306"
+        environment:
+            - MYSQL_ROOT_PASSWORD=7arUEvPFDgfvtsFZAumVLFvJ
+            - MYSQL_DATABASE=gpli-main
+            - MYSQL_USER=gpli
+            - MYSQL_PASSWORD=EoofgAZxv6QZprGGWQMeDLiG
+        volumes:
+            - ego-nas_gpli_mariadb_data:/var/lib/mysql
+
+
+#    - ego-nas_glpi_nginx_conf       /volume1/docker/glpi-data/nginx/conf
+#    - ego-nas_glpi_nginx_log        /volume1/docker/glpi-data/nginx/log
+#    - ego-nas_gpli_mariadb_conf     /volume1/docker/glpi-data/mariadb/conf
+#    - ego-nas_gpli_mariadb_data     /volume1/docker/glpi-data/mariadb/data
+#    - ego-nas_gpli_mariadb_log      /volume1/docker/glpi-data/mariadb/log
+#    - ego-nas_glpi_php-fpm_conf     /volume1/docker/glpi-data/php-fpm/conf
+#    - ego-nas_glpi_php-fpm_data     /volume1/docker/glpi-data/php-fpm/data
+#    - ego-nas_glpi_php-fpm_log      /volume1/docker/glpi-data/php-fpm/log
