@@ -1,5 +1,7 @@
 FROM php:7.3.2-fpm
 
+ARG APCU_VERSION=5.1.11
+
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
@@ -25,13 +27,13 @@ RUN apt-get update && apt-get install -y \
        soap \
        xmlrpc \
     ; \
-    pecl install apcu-4.0.11 && docker-php-ext-enable apcu ; \
+    pecl install apcu-5.1.11 && docker-php-ext-enable apcu
 
 ### TEMP STRING MOVED TO ASSETS
 # RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" 
 
 COPY assets/php.ini /usr/local/etc/php/php.ini
-COPY assets/index.php /var/www/html/index.php
+#COPY assets/index.php /var/www/html/index.php
 
 # Override with custom opcache settings
 # COPY assets/opcache.ini $PHP_INI_DIR/conf.d/
