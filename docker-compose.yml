@@ -77,7 +77,7 @@ services:
             - 6080:80
             - 6443:443
         volumes:
-            - ego-nas_glpi_nginx_conf:/etc/nginx/conf.d
+            - ego-nas_glpi_nginx_conf:/etc/nginx
             - ego-nas_glpi_nginx_log:/var/log/nginx
             - ego-nas_glpi_php-fpm_data:/var/www
         links:
@@ -91,7 +91,7 @@ services:
             - MYSQL_USER=gpli
             - MYSQL_PASSWORD=EoofgAZxv6QZprGGWQMeDLiG
         volumes:
-            - ego-nas_gpli_mariadb_conf:/etc/mysql/conf.d
+            - ego-nas_gpli_mariadb_conf:/etc/mysql
             - ego-nas_gpli_mariadb_data:/var/lib/mysql
             - ego-nas_gpli_mariadb_log:/var/log/mysql
         restart: always
@@ -99,7 +99,7 @@ services:
     php-fpm:
         build: ./php-fpm
         volumes:
-            - ego-nas_glpi_php-fpm_conf:/usr/local/etc/php
+            - ego-nas_glpi_php-fpm_conf:/usr/local/etc
             - ego-nas_glpi_php-fpm_log:/var/log/php
             - ego-nas_glpi_php-fpm_data:/var/www
         links:

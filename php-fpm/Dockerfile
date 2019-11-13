@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
     docker-php-ext-install -j$(nproc) iconv ; \
     docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ ; \
     docker-php-ext-configure ldap ; \
+    docker-php-ext-configure imap --with-kerberos --with-imap-ssl; \
     docker-php-ext-install -j$(nproc) \
        exif \
        gd \
@@ -32,7 +33,7 @@ RUN apt-get update && apt-get install -y \
 ### TEMP STRING MOVED TO ASSETS
 # RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" 
 
-COPY assets/php.ini /usr/local/etc/php/php.ini
+#COPY assets/php.ini /usr/local/etc/php/php.ini
 #COPY assets/index.php /var/www/html/index.php
 
 # Override with custom opcache settings
