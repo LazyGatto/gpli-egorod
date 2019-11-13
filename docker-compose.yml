@@ -77,7 +77,7 @@ services:
             - 6080:80
             - 6443:443
         volumes:
-            - ego-nas_glpi_nginx_conf:/etc/nginx
+            - ego-nas_glpi_nginx_conf:/etc/nginx/conf.d
             - ego-nas_glpi_nginx_log:/var/log/nginx
             - ego-nas_glpi_php-fpm_data:/var/www
         links:
